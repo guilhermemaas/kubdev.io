@@ -1,0 +1,6 @@
+Opções de Registrys:
+- Docker Hub
+- Elastic Container Registry (AWS ECR)
+- Azure Container Registry (Azure ACR)
+- Google Container Registry
+- Harbor

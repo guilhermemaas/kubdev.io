@@ -1,0 +1,9 @@
+#Criar container com volume do tipo bind mount:
+docker container run -it -v "$(pwd)/volume:/app" ubuntu /bin/bash
+
+#Criar container com volume do tipo Docker Volume:
+docker volume create aula_docker
+docker container run -it -v "aula_docker:/app" ubuntu /bin/bash
+
+#Criar container, criando também volume passando o tipo:
+docker container run -it --mount type=bind,src="$(pwd)",dst=/app ubuntu /bin/bash

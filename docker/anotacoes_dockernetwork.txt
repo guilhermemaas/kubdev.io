@@ -1,0 +1,18 @@
+#Criar rede:
+docker network create aula_docker
+
+#Cria automaticamente do tipo bridge
+
+#Para listar as networks:
+docker network ls 
+
+#Conectar um container em uma rede:
+docker network connect ID_CONTAINER
+
+#Host é o nome do container.
+
+#Criar com network do tipo host:
+docker container run -d --name nginx --network host nginx
+
+#Disconnect:
+docker network disconnect aula_docker nginx

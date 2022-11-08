@@ -13,5 +13,59 @@ VOLUME => Define volumes que devem ser definidos
 WORKDIR => Define seu diretório corrente
 
 #Build:
-docker image build -t conversao-temperatura .
+docker image build -t gmaas2/conversao-temperatura:1.0 .
 
+#Padrão para nomeação de imagem:
+
+guilhermemaas/api-conversao:v1
+
+Namespace/Repositório:Tag
+
+Casos onde só tem Repositório:
+Exemplo: ubuntu:20.10
+É por que são imagens oficiais
+
+##############################
+##########Boas práticas:
+##############################
+-> Sempre usar imagens oficiais.
+
+-> Sempre usar imagens + versão, para não usar latest e evitar quebra da aplicação por incompatibilidade:
+FROM node:14.17.5
+
+-> .dockerignore - Para não copiar resultados de build de fora pra dentro, caso eles venham a rodar também dentro do container.
+Por exemplo, npm install (Pasta node_modules).
+
+-> COPY vs ADD - Copia um arquivo LOCAL para dentro da imagem. Já o ADD pode ser um arquivo remoto, por exemplo um arquivo de um site. www.site.com/arquivo.
+o ADD também funciona com arquivos compactados, ou seja, descompacta e copia. No geral usar o COPY.
+
+-> ENTRYPOINT vs CMD - Os dois podem ser usados para inicializar o container. A diferença é que o Entrypoint é imutável, não consegue sobescrever.
+Já o CMD pode. Os dois podem ser usados em conjunto. Pode usar o CMD pra passar parâmetros para o Entrypoint, ajudando na inicialização do container.
+
+-> CMD - O CMD pode ser sobescrito. Por exemplo, como entrypoint temos um .sh com echo "Container", ao executar o container podemos passar outro comando no lugar.
+docker run gmaas2/ubuntu-cmd echo "Container 2". Muito útil para iniciar containers com parâmetros específicos.
+
+-> ENTRYPOINT - IMUTÁVEL #############.
+
+-> ENTRYPOINT + CMD = Passar parâmetros para o ENTRYPOINT através do CMD:
+    entrypoint.sh:
+#!/bin/bash
+if [ -z $1 ] #Verificar se está recebendo parâmetro
+then
+    echo "Iniciando o container sem parâmetro."]
+else 
+    echo "Iniciando o container com o parêmtro $1"
+fi
+
+-> Enviar argumentos. Por exemplo, passar a versão do Ubuntu base. Dockerfile:
+ARG TAG=latest
+FROM ubuntu:$TAG
+RUN apt update && \
+    apt install curl --yes
+
+docker build -t gmaas2/ubuntu-arg:1.0 --build-arg TAG="22.04"
+
+-> MULTISTAGE BUILD - Ter uma imagem intermediária, compilar e gerar os binários e então ter a imagem final somente com necessário.
+Assim a imagem fica muito mais leve. Ai podemos usar um Alpine por exemplo + o binário.
+
+-> Criar Tag :latest e enviar para o Registry.

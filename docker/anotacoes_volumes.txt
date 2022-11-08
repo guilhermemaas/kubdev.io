@@ -7,3 +7,4 @@ docker container run -it -v "aula_docker:/app" ubuntu /bin/bash
 
 #Criar container, criando também volume passando o tipo:
 docker container run -it --mount type=bind,src="$(pwd)",dst=/app ubuntu /bin/bash
+docker container run -it --mount type=volume,src="aula_docker2",dst=/app ubuntu /bin/bash

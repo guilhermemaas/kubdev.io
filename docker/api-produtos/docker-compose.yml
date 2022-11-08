@@ -1,0 +1,35 @@
+version: '3.8'
+
+volumes:
+  mongo_vol:
+
+networks:
+  api-produtos:
+    driver: bridge
+
+services:
+  api:
+    image: gmaas2/api-produtos:${TAG}
+    build:
+      dockerfile: ./Dockerfile
+      context: ./src
+    ports:
+      - 8080:8080
+    networks:
+      - api-produtos
+    depends_on:
+      - mongodb
+    environment:
+      MONGODB_URI: mongodb://mongouser:mongopwd@mongodb:27017/admin
+  
+  mongodb:
+    image: mongo:4.4.3
+    ports:
+      - 27017:27017
+    networks:
+      - api-produtos
+    volumes:
+      - mongo_vol:/data/db
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: mongouser
+      MONGO_INITDB_ROOT_PASSWORD: mongopwd

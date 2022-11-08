@@ -32,6 +32,7 @@ Exemplo: ubuntu:20.10
 
 -> Sempre usar imagens + versão, para não usar latest e evitar quebra da aplicação por incompatibilidade:
 FROM node:14.17.5
+Obs.: Idempotência
 
 -> .dockerignore - Para não copiar resultados de build de fora pra dentro, caso eles venham a rodar também dentro do container.
 Por exemplo, npm install (Pasta node_modules).

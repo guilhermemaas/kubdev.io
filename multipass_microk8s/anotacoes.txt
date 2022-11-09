@@ -1,0 +1,52 @@
+#Instalação do multipass no Ubuntu
+sudo snap install multipass
+
+#Criar máquina virtual:
+multipass launch -n NOME -c QT_CPUS -m QT_MEM -D QTDISCO
+multipass launch -n k8s -c 2 -m 2gb -d 20gb
+
+#Listar vms e ips:
+multipass list 
+
+#Executar comando remoto
+multipass exec microk8s ps aux
+
+#Montar um diretório da máquina física na vm
+multipass mount localdir nome_vm:/dir
+
+#Ummount no diretório:
+multipass ummount nome_vm
+
+#Verificar detalhes de uso de cpu, mem, disco
+multipass info microk8s
+
+#Deletar vm
+multipass delete microk8s
+#Fica em estado de deleted
+
+#Recuperar
+multipass recover microk8s
+
+#Startar novamente
+multipass start microk8s
+
+#Deletar de vez
+multipass purge microk8s
+
+#Instalar o microk8s na vm
+multipass exec microk8s -- sudo snap install microk8s --classic
+
+#Dar permissão do usuário ubuntu pra usar o microk8s
+multipass exec microk8s -- sudo usermod -a -G microk8s ubuntu
+
+#Dar permissão do microk8s no .kube 
+multipass exec microk8s -- sudo chown -f -R ubuntu ~/.kube
+
+#Restartar a vm
+multipass restart k8s
+
+#Verificar as configs do kubectl pra adicionar como context no .kube local
+multipass exec microk8s -- /snap/bin/microk8s.kubectl config view --raw
+#Colar no config dentro de ~/.kube/config e ajustar o IP conforme o da vm.
+
+#Adicionar mais um nó no cluster microk8s

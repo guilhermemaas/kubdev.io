@@ -1,0 +1,14 @@
+#Instalação do Azure CLI:
+curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
+
+https://learn.microsoft.com/en-us/cli/azure/
+
+#Logar o cli
+az login
+
+#Baixar credenciais (Resource Group + Nome do Cluster)
+az aks get-credentials --resource-group kubedev --name kubedev --overwrite-existing
+
+#Alternar context
+kubectl config get-contexts
+kubectl config use-context name

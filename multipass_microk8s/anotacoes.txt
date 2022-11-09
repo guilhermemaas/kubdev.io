@@ -50,3 +50,4 @@ multipass exec microk8s -- /snap/bin/microk8s.kubectl config view --raw
 #Colar no config dentro de ~/.kube/config e ajustar o IP conforme o da vm.
 
 #Adicionar mais um nó no cluster microk8s
+microk8s add-node 

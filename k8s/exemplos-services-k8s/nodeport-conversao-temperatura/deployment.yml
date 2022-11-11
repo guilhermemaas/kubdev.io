@@ -1,0 +1,16 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: api-nodepord
+spec:
+  selector:
+    matchLabels:
+      app: api-nodepord
+  template:
+    metadata:
+      labels:
+        app: api-nodepord
+    spec:
+      containers:
+      - name: api-nodepord
+        image: kubedevio/api-conversao:v1-machine-name

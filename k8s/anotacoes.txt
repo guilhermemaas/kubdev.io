@@ -1,0 +1,127 @@
+##########################################
+FORWARD
+##########################################
+Fazer um forward de um pod pra fora do Cluster. Um bind de uma porta de fora pra dentro do pod.
+kubectl port-forward pod meuprimeiropod 8080:80
+
+
+##########################################
+create
+##########################################
+kubectl create -f .\meupodazul.yml -f .\meupodverde.yml
+
+
+##########################################
+get com label
+##########################################
+kubectl get pods -l versao=verde
+
+
+##########################################
+Replicaset
+##########################################
+kubectl scale replicaset meuprimeiroreplicaset --replicas=15
+
+##########################################
+Apply
+##########################################
+kubectl apply -f meuprimeiroreplicaset.yml
+
+
+##########################################
+Escalar deployment
+##########################################
+kubectl scale deployment meuprimeirodeployment --replicas=5
+
+
+##########################################
+Mais detalhes dos pods
+##########################################
+kubectl get pods -o wide
+
+
+##########################################
+Rollout History e Rollback
+##########################################
+Verificar histórico de alterações de um deployment
+kubectl rollout history deployment meuprimeirodeployment
+
+Fazer rollback pra versão anterior:
+kubectl rollout undo deployment meuprimeirodeployment
+
+Alterar manualmente uma imagem:
+kubectl set image deployment meuprimeirodeployment meucontainer=kubdevio/nginx-color:green
+
+
+##########################################
+Pod em modo interativo
+##########################################
+kubectl run -i --tty --image kudevio/ubuntu-curl ping-test --restart=Never --rm -- /bin/bash
+
+
+##########################################
+kubectl run
+##########################################
+kubectl run -i --tty --image kubedevio/ubuntu-curl -- ping-test /bin/bash
+
+
+##########################################
+Rodar todos os manifestos no diretório atual
+##########################################
+kubectl ./
+
+
+##########################################
+Pegar todos os objetos do namespace
+##########################################
+kubectl get all
+
+
+##########################################
+kubectl run
+##########################################
+
+
+##########################################
+kubectl run
+##########################################
+
+
+##########################################
+kubectl run
+##########################################
+
+
+##########################################
+kubectl run
+##########################################
+
+
+##########################################
+kubectl run
+##########################################
+
+
+##########################################
+kubectl run
+##########################################
+
+
+##########################################
+kubectl run
+##########################################
+
+
+##########################################
+kubectl run
+##########################################
+
+
+##########################################
+kubectl run
+##########################################
+
+
+##########################################
+kubectl run
+##########################################

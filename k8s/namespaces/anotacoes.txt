@@ -1,0 +1,20 @@
+#Port Forward:
+kubectl port-forward deployblue-6bdd456b86-m96kt 8080:80
+ubectl port-forward deploygreen-5d6d46cff5-nh9dg 8081:80
+
+#Criar namespace
+kubectl create namespace blue
+kubectl create namespace green
+
+#Criar com namespace
+kubectl apply -f xpto.yml -n blue
+
+#todos os namespaces
+kubectl get deploy --all-namespaces
+
+##########################################
+Comunicação entre namespaces:
+##########################################
+Entrar em um pod para executar um curl nos deploys dos dois namespaces:
+kubectl run -i --tty --image kubedevio/ubuntu-curl curl-teste --restart=Never --rm -- /bin/bash
+

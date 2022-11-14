@@ -51,3 +51,22 @@ multipass exec microk8s -- /snap/bin/microk8s.kubectl config view --raw
 
 #Adicionar mais um nó no cluster microk8s
 microk8s add-node 
+
+
+#Instalar o CoreDNS
+Last login: Wed Nov  9 14:43:08 2022 from 10.76.208.1
+ubuntu@microk8s:~$ microk8s enable dns
+Infer repository core for addon dns
+Enabling DNS
+Applying manifest
+serviceaccount/coredns created
+configmap/coredns created
+deployment.apps/coredns created
+service/kube-dns created
+clusterrole.rbac.authorization.k8s.io/coredns created
+clusterrolebinding.rbac.authorization.k8s.io/coredns created
+Restarting kubelet
+Adding argument --cluster-domain to nodes.
+Adding argument --cluster-dns to nodes.
+Restarting nodes.
+DNS is enabled

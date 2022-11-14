@@ -1,0 +1,41 @@
+##########################################
+1 - Criação das VMs
+##########################################
+
+Criar 2 VMs com multipass
+multipass launch -n k8s-control-plane -c 2 -m 2gb -d 8gb
+multipass launch -n k8s-worker -c 2 -m 2gb -d 8gb
+multipass launch -n k8s-worker2 -c 2 -m 2gb -d 8gb
+
+
+##########################################
+2 - Desabilitar o Swap
+##########################################
+multipass exec k8s-control-plane -- swapoff -a
+multipass exec k8s-worker -- swapoff -a
+multipass exec k8s-worker2 -- swapoff -a
+
+##########################################
+3 - Instalar o container runtime
+##########################################
+
+q
+
+##########################################
+3 - Instalar o kubeadm
+##########################################
+
+
+##########################################
+3 - Instalar o kubeadm
+##########################################
+
+
+##########################################
+3 - Instalar o kubeadm
+##########################################
+
+
+##########################################
+3 - Instalar o kubeadm
+##########################################

@@ -35,3 +35,5 @@ docker commit
 #Ou Dockerfile
 
 docker image build -t ubuntu-curl .
+
+

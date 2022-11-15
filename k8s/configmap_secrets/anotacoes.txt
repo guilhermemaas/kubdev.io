@@ -1,0 +1,24 @@
+ 
+ Visualizar configmaps:
+ ✘ gmaas@desktop  ~/dev/pedelogo-catalogo/k8s/mongodb   main  kubectl describe configmap mongodb-configmap
+Name:         mongodb-configmap
+Namespace:    default
+Labels:       <none>
+Annotations:  <none>
+
+Data
+====
+MONGO_INITDB_ROOT_PASSWORD:
+----
+mongopwd
+MONGO_INITDB_ROOT_USERNAME:
+----
+mongouser
+
+BinaryData
+====
+
+Events:  <none>
+
+
+#Criar secret:

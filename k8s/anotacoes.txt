@@ -78,8 +78,9 @@ kubectl get all
 
 
 ##########################################
-kubectl run
+Apply em manifestos de forma recursiva
 ##########################################
+kubectl apply -f .\ -R
 
 
 ##########################################

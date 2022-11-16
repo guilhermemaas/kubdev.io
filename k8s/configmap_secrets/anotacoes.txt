@@ -20,5 +20,9 @@ BinaryData
 
 Events:  <none>
 
+#Converter pra base64 na linha de comando:
+echo -n "mongouser" | base64
+echo -n "mongopwd" | base64
 
-#Criar secret:
+#Criar secret na linha de comando:
+

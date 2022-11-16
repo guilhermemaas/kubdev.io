@@ -1,0 +1,2 @@
+#Adicionar secrets pro cluster conseguir baixar as imagens.
+kubectl create secret docker-registry acr-gmaas --docker-server=nome.azurecr.io --docker-username=gmaas --docker-password=xpto --docker-email=xpto@gmail.com

@@ -1,0 +1,17 @@
+Instalar os componentes de metric server oficiais:
+kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml
+
+#Imagem do Google para teste de uso de recursos:
+gcr.io/kubernetes-e2e-test-images/resource-consumer:1.4
+
+#Comando pra fazer o container usar mais recurso no IP do service ligado ao pod
+curl --data "megabytes=20&durationSec=30" http://51.159.74.169/ConsumeMem
+
+#Comando pra fazer o container usar x de cpu:
+curl --data "millicores=300&durationSec=30" http://172.18.0.2:30559/ConsumeCPU
+
+#Listar HPAs:
+kubectl get hpa
+
+#Erro no kind pra executar o kubectl top pod:
+Error from server (ServiceUnavailable): the server is currently unable to handle the request (get pods.metrics.k8s.io)

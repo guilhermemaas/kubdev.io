@@ -84,9 +84,9 @@ kubectl apply -f .\ -R
 
 
 ##########################################
-kubectl run
+Verificar uso de cpu dos pods
 ##########################################
-
+kubectl get top pods
 
 ##########################################
 kubectl run

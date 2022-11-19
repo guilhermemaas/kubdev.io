@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx
+spec:
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+        - name: nginx
+          image: nginx
+          lifecycle:
+            postStart:
+              exec:
+                command:
+                  - "curl"
+                  - "-x"
+                  - "POST"
+                  - "http://pruu.herokuapp.com/dump/lifecyclestart"
+            preStop:
+              exec:
+                command:
+                  - "curl"
+                  - "-x"
+                  - "POST"
+                  - "http://pruu.herokuapp.com/dump/lifecyclestop"                  
+          resources:
+            requests:
+              memory: 1500Mi
+              cpu: 1000m
+            limits:
+              memory: 2000Mi
+              cpu: 1500m  
+          ports:
+            - containerPort: 80

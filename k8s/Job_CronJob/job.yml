@@ -1,0 +1,23 @@
+apiVersion: batch/v1
+kind: Job 
+metadata:
+  name: roleta-job
+spec:
+  backoffLimit: 20 #Número de vezes que vai tentar
+  #Até desistir
+  parallelism: 2 #Irá subir 2 pods ao mesmo tempo
+  completions: 3 #Considera que está conclúida
+  template:
+    spec:
+      containers:
+        - name: job
+          image: kubedevio/roleta
+          args:
+            - "-w"
+            - "5"
+            - "-c"
+            - "2"
+            - "-m"
+            - "5"
+      restartPolicy: Never
+      #Never, Always, OnFailure

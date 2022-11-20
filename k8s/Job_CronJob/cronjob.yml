@@ -1,0 +1,30 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: roleta-job
+spec:
+  schedule: "*/1 * * * *" #A cada 5 minutos
+  concurrencyPolicy: Replace 
+  #Replace = Vai matar e substituir os jobs que estiverem executando da agenda
+  #anterior
+  #Forbid = Ignora a rodada atual, pois ainda está rodando, ou seja, perde o ciclo.
+  jobTemplate:
+    spec:
+      backoffLimit: 20 #Número de vezes que vai tentar
+      #Até desistir
+      parallelism: 2 #Irá subir 2 pods ao mesmo tempo
+      completions: 3 #Considera que está conclúida
+      template:
+        spec:
+          containers:
+            - name: job-roleta
+              image: kubedevio/roleta
+              args:
+                - "-w"
+                - "15"
+                - "-c"
+                - "2"
+                - "-m"
+                - "5"
+          restartPolicy: Never
+          #Never, Always, OnFailure

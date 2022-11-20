@@ -24,5 +24,12 @@ Events:  <none>
 echo -n "mongouser" | base64
 echo -n "mongopwd" | base64
 
-#Criar secret na linha de comando:
 
+#Criar configmap pela linha de comando:
+kubectl create configmap literal-configmap --from-literal=Mongo__Host=mongo-service
+
+#Criar configmap com base em um arquivo de config, prometheus por exemplo.
+kubectl create configmap file-configmap --from-file=prometheus.yml
+
+#Criar secret na linha de comando:
+kubectl create secret generic literal-secret --from-literal=MONGO__PWD=mongopwd

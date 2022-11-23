@@ -1,0 +1,5 @@
+kubectl label node k8s-kind-worker2 app=api
+kubectl label node k8s-kind-worker2 app=api2 --overwrite
+
+Remover:
+kubectl label node k8s-kind-worker2 app-

@@ -1,0 +1,2 @@
+kubectl taint nodes nomenode chave=valor:NoSchedule
+kubectl taint nodes nomenode chave=valor:PreferNoSchedule

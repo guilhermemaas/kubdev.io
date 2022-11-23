@@ -1,0 +1,4 @@
+cluster com CNI
+
+kind create cluster --name kind-weavenet --config kind-cni.yml
+kubectl apply -f https://docs.projectcalico.org/manifests/calico.yaml

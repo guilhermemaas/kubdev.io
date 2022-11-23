@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx_tolerante
+spec:
+  selector:
+    matchLabels:
+      app: nginx_tolerante
+  template:
+    metadata:
+      labels:
+        app: nginx_tolerante
+    spec:
+      containers:
+      - name: nginx_tolerante
+        image: ngix
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 80
+      tolerations:
+        - key: "special"
+          operator: "Equal"
+          value: "valor1"
+          effect: "NoExecute"

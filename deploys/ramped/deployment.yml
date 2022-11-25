@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: api-versao
+spec:
+  replicas: 10
+  selector:
+    matchLabels:
+      app: api-versao
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 0
+      #1, 5, 10 -> Nesse caso vai subir 10 réplicas + 1 na nova, e então trocar a versão, ou 10+5, 10+10
+      #25%, vai subir por volta de 2 ou 3 a mais pra ir fazendo as trocas.
+      maxUnavailable: 2
+      #Quantas ele vai matar a menos do desejado.
+      #Então faria sentido, maxSurge: 0, e maxUnavailable: 2 por exemplo.
+  template:
+    metadata:
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/port: "8080"
+      labels:
+        app: api-versao
+    spec:
+      containers:
+      - name: api-versao
+        image: kubedevio/api-versao:v1
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 8080

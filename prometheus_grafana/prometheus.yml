@@ -1,0 +1,35 @@
+global:
+  scrape_interval: 15s #Tempo para coletar nos endpoints /metrics.
+  scrape_timeout: 5s
+  evaluation_interval: 15s #Intervalo em que o Prometheus vai recarregar as rules de config de alarme.
+  external_labels:
+    aula: kubedev-prometheus #Label nas métricas coletadas
+rule_files:
+  - alert-rules.rules
+scrape_configs: #Jobs de coleta, targes são os endpoints
+  - job_name: prometheus
+    static_configs:
+      - targets: ["localhost:9090"]
+        labels:
+          grupo: "prometheus"
+  - job_name: api-catalogo
+    scrape_interval: 5s
+    scrape_timeout: 1s
+    scheme: http #ele é default, não precisa colocar
+    metrics_path: /metrics #ele é default, não precisa colocar, mas pode ser um endpoint customizado
+    static_configs:
+      - targets: [pedelogo.catalogo.api:80]
+        labels:
+          grupo: "pedelogo-api"
+  - job_name: mongodb-exporter
+    static_configs:
+      - targets:
+          - "mongodbexporter:9216"
+        labels:
+          grupo: "mongodb"
+alerting:
+  alertmanagers:
+    - scheme: http
+      static_configs:
+        - targets:
+          - 'alert-manger:9093'

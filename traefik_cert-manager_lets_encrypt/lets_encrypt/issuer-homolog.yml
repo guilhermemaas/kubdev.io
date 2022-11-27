@@ -1,0 +1,15 @@
+apiVersion: cert-manager.io/v1
+kind: ClusterIssuer
+metadata:
+  name: letsencrypt-homolog
+  namespace: cert-manager
+spec: 
+  acme: 
+    server: https://acme-staging-v02.api.letsencrypt.org/directory
+    email: guilherme.maas@gmail.com 
+    privateKeySecretRef: #Secret que irá armazenar a chave privada
+      name: letsencrypt-homolog
+    solvers:
+      - http01:
+          ingress:
+            class: traefik

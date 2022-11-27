@@ -1,0 +1,8 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: traefik-ingress-rate-limit
+spec:
+  rateLimit:
+    average: 5
+    period: 1s #Vou aceitar 5 requests por segundo

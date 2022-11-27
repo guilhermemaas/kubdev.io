@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-traefik
+spec:
+  selector:
+    matchLabels:
+      app: nginx-traefik
+  template:
+    metadata:
+      labels:
+        app: nginx-traefik
+    spec:
+      containers:
+      - name: nginx-traefik
+        image: fabricioveronez/web-page:green
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 80

@@ -1,0 +1,11 @@
+apiVersion: cert-manager.io/v1 
+kind: Certificate 
+metadata: 
+  name: letsencrypt-meusistema-com-br-cert
+spec:
+  secretName: meusistema-com-br-secret
+  issuerRef:
+    kind: ClusterIssuer
+    name: letsencrypt-homolog
+  dnsNames:
+    - "meusistema.com.br"

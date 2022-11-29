@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: pedelogo-prometheus-mongodb-service
+spec:
+  selector:
+    app: pedelogo-prometheus-mongodb
+  ports:
+  - port: 27017
+    targetPort: 27017

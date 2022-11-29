@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: pedelogo-prometheus-service
+spec:
+  selector:
+    app: pedelogo-prometheus
+  ports:
+  - port: 80
+    targetPort: 80
+    nodePort: 30222
+  type: NodePort 

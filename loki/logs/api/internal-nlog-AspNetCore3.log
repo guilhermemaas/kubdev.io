@@ -1,0 +1,11 @@
+2022-11-28 22:20:16.5672 Info Message Template Auto Format enabled
+2022-11-28 22:20:16.5706 Info Loading assembly: NLog.Web.AspNetCore
+2022-11-28 22:20:16.5899 Info Adding target FileTarget(Name=allfile)
+2022-11-28 22:20:16.5906 Info Adding target FileTarget(Name=ownFile-web)
+2022-11-28 22:20:16.5906 Info Adding target ConsoleTarget(Name=lifetimeConsole)
+2022-11-28 22:20:16.5984 Error Failed Watching path '/app' with file '/app/NLog.config' for changes. Exception: System.IO.IOException: The configured user limit (128) on the number of inotify instances has been reached, or the per-process limit on the number of open file descriptors has been reached.
+   at System.IO.FileSystemWatcher.StartRaisingEvents()
+   at System.IO.FileSystemWatcher.StartRaisingEventsIfNotDisposed()
+   at System.IO.FileSystemWatcher.set_EnableRaisingEvents(Boolean value)
+   at NLog.Internal.MultiFileWatcher.Watch(String fileName)
+2022-11-28 22:20:16.6044 Info Validating config: TargetNames=allfile, lifetimeConsole, ownFile-web, ConfigItems=81, FilePath=/app/NLog.config

@@ -1,0 +1,8 @@
+helm repo add jaegertracing https://jaegertracing.github.io/helm-charts
+helm update
+helm show values jaegertracing/jaeger
+
+helm install jaeger jaegertracing/jaeger --set provisionDataStore.cassandra=false --set provisionDataStore.elasticsearch=true --set storage.type=elasticsearch --namespace jaeger --create-namespace
+helm list -n jaeger
+
+helm install jaeger jaegertracing/jaeger --set provisionDataStore.cae --set provisionDataStore.elasticsearch=false --set storage.type=cassandra --namespace jaeger --create-namespace

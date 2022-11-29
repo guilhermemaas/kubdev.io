@@ -1,0 +1,17 @@
+#Criar chave .ssh no ubuntu:
+ssh-keygen
+
+#No painel da Digital Ocean:
+Settings > Security > ssh para adicionar a chave pub. 
+
+#Droplets = VMs
+
+#Network > Firewall = SG, Security Groups
+
+ssh root@IP
+
+#Instalar o terraform na máquina.
+
+#Criar o main.tf com os dados iniciais de configuração do provider.
+
+#Iniciar o projeto

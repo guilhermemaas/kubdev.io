@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pedelogo-prometheus-mongodb-deployment
+spec:
+  selector:
+    matchLabels:
+      app: pedelogo-prometheus-mongodb
+  template:
+    metadata:
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/path: "/metrics"
+        prometheus.io/port: "9216"      
+      labels:
+        app: pedelogo-prometheus-mongodb
+    spec:
+      containers:
+      - name: pedelogo-prometheus-mongodb
+        image: mongo:4.2.8
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 27017
+        env:
+          - name: MONGO_INITDB_ROOT_USERNAME
+            value: mongouser 
+          - name: MONGO_INITDB_ROOT_PASSWORD
+            value: mongopwd
+      - name: mongodb-exporter
+        image: kubedevio/mongo-exporter
+        resources: {}
+        ports:
+          - containerPort: 9216
+        env:
+          - name: MONGO_URI
+            value: mongodb://mongouser:mongopwd@localhost:27017  

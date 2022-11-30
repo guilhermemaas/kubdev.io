@@ -1,0 +1,3 @@
+#token = export TF_VAR_token=xpto ou terraform apply -var="token=xpto"
+nome_droplet = "maquinaxpto-lab-tf" 
+regiao = "nyc1"

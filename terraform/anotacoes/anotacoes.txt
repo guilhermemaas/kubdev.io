@@ -15,3 +15,10 @@ ssh root@IP
 #Criar o main.tf com os dados iniciais de configuração do provider.
 
 #Iniciar o projeto
+terraform init 
+
+#Identar arquivos do projeto 
+terraform fmt
+
+#Validar sintaxe dos arquivos 
+terraform validate
